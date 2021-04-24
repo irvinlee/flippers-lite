@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-const selectEFConfigSubstate = (state: { filters: any; }) => state?.filters;
+const selectEFConfigSubstate = (state: { filters: any; }) => state?.filters?.efconfig;
 
 export const selectNiches = createSelector(
   [selectEFConfigSubstate],

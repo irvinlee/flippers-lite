@@ -1,6 +1,6 @@
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { IMonetization, INiche } from '../types';
+import { IMonetization, INiche } from '../../common/types';
 import { getApiUrl } from '../../common/utils/helpers';
 
 

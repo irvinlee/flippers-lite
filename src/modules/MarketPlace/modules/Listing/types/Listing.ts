@@ -1,4 +1,4 @@
-import { IMonetization, INiche} from '../../../../Filters/types';
+import { IMonetization, INiche} from '../../../../common/types';
 
 export default interface Listing {
   id: string,

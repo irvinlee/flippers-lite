@@ -1,5 +1,4 @@
-import INiche from './Niche';
-import IMonetization from './Monetization';
+import { INiche, IMonetization} from '../../common/types';
 
 export default interface IEFConfig {
   niches: Array<INiche>,
