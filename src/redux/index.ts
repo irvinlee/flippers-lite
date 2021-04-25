@@ -1,4 +1,4 @@
-import { configureStore, current } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import thunkMiddleware from 'redux-thunk';
 
 import { IReducer } from '../modules/common/types';

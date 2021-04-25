@@ -6,6 +6,8 @@ const initialState: IFilterConfig = {
   selectedMonetizations: [],
   searchQuery: '',
   selectedStatuses: [],
+  limit: 20,
+  page: 1,
 };
 
 export default createReducer(initialState, builder => {  

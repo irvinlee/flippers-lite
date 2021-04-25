@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 
-import {
-  ClearFiltersButton,  
+import {  
   ListingsSection,
   ResultsInfo,
   SearchBox
 } from '../modules/MarketPlace/components';
 
 import {
-  FiltersDrawer
+  FiltersDrawer,
+  ClearFiltersButton,
 } from '../modules/Filters/components';
 
 import { ViewMode } from '../modules/MarketPlace/types';
@@ -22,7 +22,7 @@ const PageTheme = {
     customStyles: {      
       right: '0',
       top: '0',
-    }
+    },
   }
 };
 

@@ -9,4 +9,8 @@ export default interface Listing {
   monetizations: Array<IMonetization>,
   niches: Array<INiche>,
   listing_status: string,
+  niche_image: string,
+  new_listing: boolean,
+  listing_multiple: string,
+  pricing_period_months: number,
 }
