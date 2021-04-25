@@ -23,7 +23,7 @@ const ComponentTheme = {
   },
 };
 
-export default function ListingSection({mode}: {mode: string}) {
+export default function ListingSection({mode, page}: {mode: string, page: number}) {
   const dispatch = useDispatch();
   const apiRequestParams = useSelector(selectApiRequestParams);
   const isLoading = useSelector(selectIsLoadingListings);
@@ -42,7 +42,7 @@ export default function ListingSection({mode}: {mode: string}) {
     if(mode === ViewMode.cards) {
       return <CardView listings={listings} metaData={metaData}/>;
     } 
-    return <TableView listings={listings} metaData={metaData}/>;
+    return <TableView listings={listings} metaData={metaData} page={page}/>;
   };
 
   return (

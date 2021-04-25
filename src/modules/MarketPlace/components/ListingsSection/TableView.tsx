@@ -31,7 +31,7 @@ const Wrapper = styled.div`
   }
 `;
 
-export default function TableView({listings, metaData}: IListingDisplayComponentProps) {
+export default function TableView({listings, metaData, page}: IListingDisplayComponentProps) {
   if(!listings.length) {
     return null;
   }

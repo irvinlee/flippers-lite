@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
+import { useParams } from 'react-router-dom';
+
+import { IPaginationParam } from '../types';
 
 import {  
   ListingsSection,
@@ -51,7 +54,8 @@ const ListingsSectionWrapper = styled.section`
 export default function Homepage() {
   const [viewMode, setViewMode] = useState<string>(ViewMode.table);
   const [isFiltersDrawerOpen, setIsFiltersDrawerOpen] = useState<boolean>(false);
-
+  const { page } = useParams<IPaginationParam>();
+  
   return (
     <ThemeProvider theme={PageTheme}>
       <MainWrapper>
@@ -74,7 +78,7 @@ export default function Homepage() {
           </OptionsSectionWrapper>
         </TopSection>
         <ListingsSectionWrapper>
-          <ListingsSection mode={viewMode}/>
+          <ListingsSection mode={viewMode} page={parseInt(page)}/>
         </ListingsSectionWrapper>
       </MainWrapper>
     </ThemeProvider>
