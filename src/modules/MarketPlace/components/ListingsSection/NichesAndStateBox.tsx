@@ -26,7 +26,7 @@ export default function NichesAndStateBox({listing}: {listing: IListing}) {
 
   return (
     <Wrapper>
-      <img src={getNicheImageUrl(listing.niche_image)} />
+      <img src={getNicheImageUrl(listing.niche_image)} alt={mainNiche}/>
       <NicheInfoWrapper>
         <NicheText>{mainNiche}</NicheText>
         <ListingStatus isNew={listing.new_listing} status={listing.listing_status}/>

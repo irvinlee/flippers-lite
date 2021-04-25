@@ -1,5 +1,4 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { IListing } from '../modules/Listing/types'
 import { IListingCollection } from '../types';
 import { setMarketPlaceListings } from './actions';
 import { RequestStatus } from '../../common/types';

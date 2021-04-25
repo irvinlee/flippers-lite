@@ -6,13 +6,11 @@ import { useParams, useHistory } from 'react-router-dom';
 import { IPaginationParam } from '../types';
 
 import {  
-  ListingsSection,
-  ResultsInfo,  
+  ListingsSection,  
 } from '../modules/MarketPlace/components';
 
 import {
   FiltersDrawer,
-  ClearFiltersButton,
   PaginationControls,
   SearchBox,
 } from '../modules/Filters/components';
@@ -49,10 +47,6 @@ const OptionsSectionWrapper = styled.div`
   align-items: center;
 `;
 
-const ViewModeWrapper = styled.div`
-  padding: 0 20px;
-`;
-
 const ListingsSectionWrapper = styled.section`
   padding: 15px;
 `;
@@ -69,7 +63,7 @@ export default function Homepage({viewMode}: {viewMode: string}) {
     () => {
       const redirectUrl = viewMode === ViewMode.cards ? '/cards/' : '/list/1';
       history.push(redirectUrl);
-    }, [history, apiRequestParams]
+    }, [history, apiRequestParams, viewMode]
   );
   
   return (
@@ -79,17 +73,8 @@ export default function Homepage({viewMode}: {viewMode: string}) {
         <TopSection>
           <div>
             <h1>Marketplace</h1>
-            <ResultsInfo mode={viewMode}/>
           </div>
-          <OptionsSectionWrapper>
-            <ClearFiltersButton />
-            <ViewModeWrapper>
-              View Mode
-              <select onChange={(e) => history.push(`/${e.target.value}`)} value={viewMode}>
-                <option value={ViewMode.cards}>Cards</option>
-                <option value={ViewMode.table}>Table</option>
-              </select>
-            </ViewModeWrapper>
+          <OptionsSectionWrapper>                        
             <SearchBox />
             <button onClick={() => setIsFiltersDrawerOpen(true)}>Filters</button>
           </OptionsSectionWrapper>

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { makeStyles } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
 import { IPaginationCtonrolProps } from '../types';
 import { useSelector } from 'react-redux';
@@ -15,21 +14,12 @@ const Wrapper = styled.div`
   }
 `;
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      marginTop: theme.spacing(2),
-    },
-  },
-}));
-
 export default function PaginationControls({
   currentPage = 1,
   itemsPerPage = 10,
   onChangePage,
   onChangeItemsPerPage,
-}: IPaginationCtonrolProps) {
-  const classes = useStyles();
+}: IPaginationCtonrolProps) {  
   const marketplaceMetaData = useSelector(selectMarketplaceMetaData);
 
   return (

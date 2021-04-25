@@ -1,6 +1,7 @@
+import { Fragment } from 'react';
 import styled from 'styled-components';
 
-export default styled.div`
+const SpinnerInner = styled.div`
   font-size: 10px;
   margin: 50px auto;
   text-indent: -9999em;
@@ -19,7 +20,12 @@ export default styled.div`
   -webkit-transform: translateZ(0);
   -ms-transform: translateZ(0);
   transform: translateZ(0);
-
+  position: fixed;
+  z-index: 99998;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
   &:before {
     width: 50%;
     height: 50%;
@@ -65,3 +71,22 @@ export default styled.div`
     }
   }
 `;
+
+const Overlay = styled.div`
+  background-color: rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 99999;
+`;
+
+export default function Spinner() {
+  return (
+    <Fragment>
+      <Overlay />
+      <SpinnerInner />
+    </Fragment>
+  );
+}
