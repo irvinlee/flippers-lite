@@ -4,7 +4,5 @@ export default interface FilterConfig {
   searchQuery: string,
   selectedStatuses: Array<string>,
   listingPriceFrom?: number,
-  listingPriceTo?: number,
-  page?: number,
-  limit?: number
+  listingPriceTo?: number,  
 }

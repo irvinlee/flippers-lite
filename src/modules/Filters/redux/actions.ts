@@ -20,6 +20,14 @@ export const loadNiches = createAction('efconfig/loadNiches', (niches: Array<INi
   }
 });
 
+export const setSearchQueryValue = createAction('filters/setSearchQueryValue', (q: string) => {  
+  return {
+    payload: {
+      q
+    }
+  }
+});
+
 export const fetchEFConfig = createAsyncThunk(
   'efconfig/fetch',
   async(_params, thunkApi) => {

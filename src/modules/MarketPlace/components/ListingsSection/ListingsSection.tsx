@@ -4,7 +4,6 @@ import styled, { ThemeProvider } from 'styled-components';
 import PropTypes from 'prop-types';
 
 import { selectApiRequestParams, selectIsLoadingListings, selectListings, selectMarketplaceMetaData } from '../../redux/selectors';
-import { RequestStatus } from '../../../common/types';
 import { fetchListings } from '../../redux/actions';
 import { ViewMode } from '../../types';
 import CardView from './CardView';
@@ -31,7 +30,7 @@ export default function ListingSection({mode, page, itemsPerPage}: {mode: string
   const metaData = useSelector(selectMarketplaceMetaData);
 
   useEffect(
-    () => {
+    () => {      
       dispatch(fetchListings({...apiRequestParams, limit: itemsPerPage, page})())      
     }, [apiRequestParams, dispatch, page, itemsPerPage]
   );

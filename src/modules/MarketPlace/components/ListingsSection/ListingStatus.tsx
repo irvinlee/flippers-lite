@@ -30,7 +30,13 @@ const Wrapper = styled.div`
 
   &.for-sale {
     &: before {
-      background-color: rgb(60, 121, 203);;
+      background-color: rgb(60, 121, 203);
+    }
+  }
+
+  &.pending-sold {
+    &: before {
+      background-color: rgb(0, 0, 0);
     }
   }
 `;

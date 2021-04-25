@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import styled, { ThemeProvider } from 'styled-components';
 import { useParams, useHistory } from 'react-router-dom';
@@ -7,17 +7,18 @@ import { IPaginationParam } from '../types';
 
 import {  
   ListingsSection,
-  ResultsInfo,
-  SearchBox
+  ResultsInfo,  
 } from '../modules/MarketPlace/components';
 
 import {
   FiltersDrawer,
   ClearFiltersButton,
   PaginationControls,
+  SearchBox,
 } from '../modules/Filters/components';
 
 import { selectMarketplaceMetaData } from '../modules/Filters/redux/selectors';
+import { selectApiRequestParams } from '../modules/MarketPlace/redux/selectors';
 
 import { ViewMode } from '../modules/MarketPlace/types';
 
@@ -57,11 +58,19 @@ const ListingsSectionWrapper = styled.section`
 
 export default function Homepage({viewMode}: {viewMode: string}) {  
   const marketplaceMetaData = useSelector(selectMarketplaceMetaData);
+  const apiRequestParams = useSelector(selectApiRequestParams);
   const [isFiltersDrawerOpen, setIsFiltersDrawerOpen] = useState<boolean>(false);
   const [itemsPerPage, setItemsPerPage] = useState<number>(10);
   const { page } = useParams<IPaginationParam>();
   const history = useHistory();
 
+  useEffect(
+    () => {
+      const redirectUrl = viewMode === ViewMode.cards ? '/cards/' : '/list/1';
+      history.push(redirectUrl);
+    }, [history, apiRequestParams]
+  );
+  
   return (
     <ThemeProvider theme={PageTheme}>
       <MainWrapper>
