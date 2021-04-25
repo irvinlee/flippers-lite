@@ -29,7 +29,7 @@ const PageTheme = {
     
     customStyles: {      
       right: '0',
-      top: '0',
+      top: '0',      
     },
   }
 };
@@ -50,6 +50,7 @@ const OptionsSectionWrapper = styled.div`
 `;
 
 const ViewModeWrapper = styled.div`
+  padding: 0 20px;
 `;
 
 const ListingsSectionWrapper = styled.section`
@@ -74,7 +75,7 @@ export default function Homepage({viewMode}: {viewMode: string}) {
   return (
     <ThemeProvider theme={PageTheme}>
       <MainWrapper>
-        <FiltersDrawer isOpen={isFiltersDrawerOpen}/>
+        <FiltersDrawer isOpen={isFiltersDrawerOpen} onRequestClose={() => {setIsFiltersDrawerOpen(false)}}/>
         <TopSection>
           <div>
             <h1>Marketplace</h1>

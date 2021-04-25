@@ -24,6 +24,20 @@ export const selectRequestStatus = createSelector(
   substate => substate?.requestStatus
 );
 
+export const selectSelectedNiches = createSelector(
+  [selectFiltersConfigSubstate],
+  substate => substate?.selectedNiches,
+);
+
+export const selectSelectedMonetizations = createSelector(
+  [selectFiltersConfigSubstate],
+  substate => substate?.selectedMonetizations,
+);
+
+export const selectSelectedStatuses = createSelector(
+  [selectFiltersConfigSubstate],
+  substate => substate?.selectedStatuses,
+);
 
 export const selectMarketplaceMetaData = createSelector(
   [selectMarketPlaceSubstate],

@@ -28,6 +28,16 @@ export const setSearchQueryValue = createAction('filters/setSearchQueryValue', (
   }
 });
 
+export const setFilters = createAction('filters/setFilters', (statuses: Array<any>, niches: Array<any>, monetizations: Array<any>) => {
+  return {
+    payload: {
+      statuses,
+      niches,
+      monetizations
+    }
+  };
+});
+
 export const fetchEFConfig = createAsyncThunk(
   'efconfig/fetch',
   async(_params, thunkApi) => {

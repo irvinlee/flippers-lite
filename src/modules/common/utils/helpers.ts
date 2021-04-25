@@ -9,7 +9,7 @@ export function getApiUrl(version: string): string {
 }
 
 export function parseMultipleUrlParamSelections(selections: Array<string>): string {
-  return selections.map((niche: string) => encodeURIComponent(niche)).join('||')
+  return selections.map((niche: string) => niche).join('||')
 }
 
 export function getNicheImageUrl(nicheImage: string): string {
@@ -18,4 +18,18 @@ export function getNicheImageUrl(nicheImage: string): string {
 
 export function formatCurrency(value: number, currency: string='USD', format: string = 'en-US'): string {
   return new Intl.NumberFormat(format, {style: 'currency', currency }).format(value);
+}
+
+export function isArrayEqualToSet(array: Array<any>, set: Set<any>): boolean {
+  if(array.length !== set.size) {
+    return false;
+  }
+  
+  for(let i = 0; i < array.length; i++) {
+    if(!set.has(array[i])) {
+      return false;
+    }
+  }
+
+  return true;
 }
