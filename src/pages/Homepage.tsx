@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 import { IPaginationParam } from '../types';
 
@@ -13,6 +13,7 @@ import {
 import {
   FiltersDrawer,
   ClearFiltersButton,
+  PaginationControls,
 } from '../modules/Filters/components';
 
 import { ViewMode } from '../modules/MarketPlace/types';
@@ -51,11 +52,12 @@ const ListingsSectionWrapper = styled.section`
   padding: 15px;
 `;
 
-export default function Homepage() {
-  const [viewMode, setViewMode] = useState<string>(ViewMode.table);
+export default function Homepage({viewMode}: {viewMode: string}) {  
   const [isFiltersDrawerOpen, setIsFiltersDrawerOpen] = useState<boolean>(false);
+  const [itemsPerPage, setItemsPerPage] = useState<number>(10);
   const { page } = useParams<IPaginationParam>();
-  
+  const history = useHistory();
+
   return (
     <ThemeProvider theme={PageTheme}>
       <MainWrapper>
@@ -69,7 +71,7 @@ export default function Homepage() {
             <ClearFiltersButton />
             <ViewModeWrapper>
               View Mode
-              <select onChange={(e) => setViewMode(e.target.value)} value={viewMode}>
+              <select onChange={(e) => history.push(`/${e.target.value}`)} value={viewMode}>
                 <option value={ViewMode.cards}>Cards</option>
                 <option value={ViewMode.table}>Table</option>
               </select>
@@ -80,6 +82,16 @@ export default function Homepage() {
         <ListingsSectionWrapper>
           <ListingsSection mode={viewMode} page={parseInt(page)}/>
         </ListingsSectionWrapper>
+        {
+          viewMode === ViewMode.table && (
+            <PaginationControls
+              currentPage={parseInt(page)}
+              itemsPerPage={itemsPerPage}
+              onChangePage={(newPage: any) => history.push(`/list/${newPage}`)}              
+              onChangeItemsPerPage={(itemsPerPage: any) => setItemsPerPage(itemsPerPage)}
+            />
+          )
+        }
       </MainWrapper>
     </ThemeProvider>
   );
