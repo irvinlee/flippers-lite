@@ -23,7 +23,8 @@ const MainWrapper = styled.div`
   height: 0;
   transition: width 0.25s ease-in-out;
   background-color: white;
-
+  ${props => ({...props.theme.drawer.customStyles})}
+  
   &.open {
     width: ${props => props.theme.drawer.width};
     height: ${props => props.theme.drawer.height};

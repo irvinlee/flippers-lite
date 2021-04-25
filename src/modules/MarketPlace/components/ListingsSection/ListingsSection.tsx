@@ -23,7 +23,7 @@ const ComponentTheme = {
   },
 };
 
-export default function ListingSection({mode, page}: {mode: string, page: number}) {
+export default function ListingSection({mode, page, itemsPerPage}: {mode: string, page: number, itemsPerPage: number}) {
   const dispatch = useDispatch();
   const apiRequestParams = useSelector(selectApiRequestParams);
   const isLoading = useSelector(selectIsLoadingListings);
@@ -32,17 +32,15 @@ export default function ListingSection({mode, page}: {mode: string, page: number
 
   useEffect(
     () => {
-      // if(requestStatus !== RequestStatus.pending) {
-        dispatch(fetchListings(apiRequestParams)())
-      // }
-    }, [apiRequestParams, dispatch]
+      dispatch(fetchListings({...apiRequestParams, limit: itemsPerPage, page})())      
+    }, [apiRequestParams, dispatch, page, itemsPerPage]
   );
   
   const displayContents = () => {
     if(mode === ViewMode.cards) {
       return <CardView listings={listings} metaData={metaData}/>;
     } 
-    return <TableView listings={listings} metaData={metaData} page={page}/>;
+    return <TableView listings={listings} metaData={metaData}/>;
   };
 
   return (

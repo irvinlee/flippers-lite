@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import styled, { ThemeProvider } from 'styled-components';
 import { useParams, useHistory } from 'react-router-dom';
 
@@ -15,6 +16,8 @@ import {
   ClearFiltersButton,
   PaginationControls,
 } from '../modules/Filters/components';
+
+import { selectMarketplaceMetaData } from '../modules/Filters/redux/selectors';
 
 import { ViewMode } from '../modules/MarketPlace/types';
 
@@ -53,6 +56,7 @@ const ListingsSectionWrapper = styled.section`
 `;
 
 export default function Homepage({viewMode}: {viewMode: string}) {  
+  const marketplaceMetaData = useSelector(selectMarketplaceMetaData);
   const [isFiltersDrawerOpen, setIsFiltersDrawerOpen] = useState<boolean>(false);
   const [itemsPerPage, setItemsPerPage] = useState<number>(10);
   const { page } = useParams<IPaginationParam>();
@@ -77,13 +81,14 @@ export default function Homepage({viewMode}: {viewMode: string}) {
               </select>
             </ViewModeWrapper>
             <SearchBox />
+            <button onClick={() => setIsFiltersDrawerOpen(true)}>Filters</button>
           </OptionsSectionWrapper>
         </TopSection>
         <ListingsSectionWrapper>
-          <ListingsSection mode={viewMode} page={parseInt(page)}/>
+          <ListingsSection mode={viewMode} page={parseInt(page)} itemsPerPage={itemsPerPage}/>
         </ListingsSectionWrapper>
         {
-          viewMode === ViewMode.table && (
+          viewMode === ViewMode.table && !!marketplaceMetaData.pages && (
             <PaginationControls
               currentPage={parseInt(page)}
               itemsPerPage={itemsPerPage}

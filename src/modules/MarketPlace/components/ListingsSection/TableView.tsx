@@ -32,7 +32,7 @@ const Wrapper = styled.div`
 `;
 
 
-export default function TableView({listings, metaData, page}: IListingDisplayComponentProps) {
+export default function TableView({listings, metaData}: IListingDisplayComponentProps) {
   
   if(!listings.length) {
     return null;
