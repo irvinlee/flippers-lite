@@ -45,6 +45,7 @@ const ViewModeWrapper = styled.div`
 `;
 
 const ListingsSectionWrapper = styled.section`
+  padding: 15px;
 `;
 
 export default function Homepage() {
